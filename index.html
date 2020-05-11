@@ -132,6 +132,36 @@
             padding: 20px;
         }
 
+        body #wrapper-content #portfolio-header #menu-button {
+            width: 48px;
+            height: 48px;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1;
+        }
+
+        body #wrapper-content #portfolio-header #menu-button a {
+            display: block;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(51, 137, 144, 1);
+            padding: 16px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-header #menu-button a:hover {
+                background-color: rgba(17, 53, 58, 1);
+            }
+        }
+
+        body #wrapper-content #portfolio-header #menu-button a img {
+            filter: invert(100%) sepia(3%) saturate(15%) hue-rotate(255deg) brightness(116%) contrast(100%);
+        }
+
         /* Content */
         body #wrapper-content #portfolio-content {
             background-color: #49c2c9;
@@ -276,6 +306,10 @@
             <div id="sides">
                 <a href="#">Civil Engineer</a>
                 <a href="#">Developer</a>
+            </div>
+
+            <div id="menu-button">
+                <a href="#"><img src="./assets/menubtn.svg" alt="Menu Button"></a>
             </div>
         </header>
 
