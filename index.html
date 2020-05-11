@@ -164,19 +164,30 @@
 
         /* Content */
         body #wrapper-content #portfolio-content {
-            background-color: #49c2c9;
+            background-color: rgba(17, 53, 58, 1);
             display: flex;
             overflow: hidden;
+            cursor: pointer;
         }
 
         body #wrapper-content #portfolio-content #engineer-content-wrapper #engineer-content {
-            background: url('./assets/engineer.jpg') no-repeat top left;
             transition: width 0.3s;
         }
 
         body #wrapper-content #portfolio-content #developer-content-wrapper #developer-content {
-            background: url('./assets/developer.jpg') no-repeat bottom right;
             transition: width 0.3s;
+        }
+
+        #engineer-bgimage-container {
+            width: 100%;
+            height: 100%;
+            background: url('./assets/engineer.jpg') no-repeat top left;
+        }
+
+        #developer-bgimage-container {
+            width: 100%;
+            height: 100%;
+            background: url('./assets/developer.jpg') no-repeat bottom right;
         }
 
         body #wrapper-content #portfolio-content .content-hovering {
@@ -185,6 +196,8 @@
             background-color: rgba(17, 53, 58, 1);
             opacity: 0.6;
             transition: opacity 0.3s;
+            position: relative;
+            top: -100%;
         }
 
         body #wrapper-content #portfolio-content .content-hovering-disabled {
@@ -195,7 +208,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            top: -100%;
+            top: -200%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -253,6 +266,48 @@
                 width: 100vw;
                 height: 100vh;
             }
+        }
+
+        /* Flipbox */
+        .flipbox-container {
+            background-color: rgba(17, 53, 58, 1);
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .flipbox-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flipbox-container-clicked .flipbox-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flipbox-front, .flipbox-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flipbox-front {
+            color: black;
+            overflow: hidden;
+        }
+
+        .flipbox-back {
+            background-color: rgba(31, 96, 122, 1);
+            color: white;
+            transform: rotateY(180deg);
         }
 
         /* Footer */
@@ -316,19 +371,47 @@
         <section id="portfolio-content">
             <div id="engineer-content-wrapper">
                 <section id="engineer-content">
+
+                    <div id="engineer-flipbox" class="flipbox-container">
+                        <div class="flipbox-inner">
+                            <div class="flipbox-front">
+                                <div id="engineer-bgimage-container"></div>
+                            </div>
+                            <div class="flipbox-back">
+                                <h1>Asdrubas</h1>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="engineer-hovering" class="content-hovering"></div>
+
                     <div id="engineer-text" class="content-text">
                         <p id="engineer-professional-text">Civil<br>Engineer</p>
                     </div>
+
                 </section>
             </div>
 
             <div id="developer-content-wrapper">
                 <section id="developer-content">
+
+                    <div id="developer-flipbox" class="flipbox-container">
+                        <div class="flipbox-inner">
+                            <div class="flipbox-front">
+                                <div id="developer-bgimage-container"></div>
+                            </div>
+                            <div class="flipbox-back">
+                                <h1>Asdrubas</h1>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="developer-hovering" class="content-hovering"></div>
+
                     <div id="developer-text" class="content-text">
                         <p id="developer-professional-text">Developer</p>
                     </div>
+
                 </section>
             </div>
         </section>
@@ -427,6 +510,15 @@
 
         document.getElementById('developer-content').addEventListener('mouseleave', function() {
             backBothSidesToNormal();
+        });
+        
+        // Dev
+        document.getElementById('engineer-text').addEventListener('click', function() {
+            document.getElementById('engineer-flipbox').classList.toggle('flipbox-container-clicked');
+        });
+
+        document.getElementById('developer-text').addEventListener('click', function() {
+            document.getElementById('developer-flipbox').classList.toggle('flipbox-container-clicked');
         });
 
     </script>
