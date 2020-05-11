@@ -350,9 +350,14 @@
         }
 
         const unhoveredContent = 100;
-        const hoveredContent = window.innerWidth - unhoveredContent;
-        const normalContent = window.innerWidth/2;
+        let hoveredContent = window.innerWidth - unhoveredContent;
+        let normalContent = window.innerWidth/2;
         const isMobile = checkIfMobile();
+
+        function updateClientWidth() {
+            hoveredContent = window.innerWidth - unhoveredContent;
+            normalContent = window.innerWidth/2;
+        }
 
         function changeEngineerSide(newZindex, newWidth) {
             document.getElementById('engineer-content').style.zIndex = newZindex;
@@ -402,7 +407,9 @@
 
         // Resizing Window
         window.addEventListener('resize', () => {
-            backBothSidesToNormal();
+            updateClientWidth();
+            document.getElementById('engineer-content').style.width = normalContent + 'px';
+            document.getElementById('developer-content').style.width = normalContent + 'px';
         });
 
         // Engineer Side
