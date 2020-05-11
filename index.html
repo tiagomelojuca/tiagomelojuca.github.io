@@ -341,57 +341,86 @@
 
     <script>
 
-        window.addEventListener('resize', () => {
+        function checkIfMobile() {
             if(window.innerWidth > 768) {
-                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
-                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
+                return false;
+            } else {
+                return true;
             }
-        });
+        }
 
-        // Hovering engineer Side
-        document.getElementById('engineer-content').addEventListener('mouseover', function() {
-            if(window.innerWidth > 768) {
-                document.getElementById('engineer-content').style.zIndex = 1;
-                document.getElementById('engineer-content').style.width = (window.innerWidth - 100) + 'px';
-                document.getElementById('developer-content').style.width = '100px';
-                document.getElementById('engineer-hovering').classList.add('content-hovering-disabled');
-                document.getElementById('engineer-professional-text').classList.add('hide-profession-text');
-                document.getElementById('developer-professional-text').classList.add('hide-profession-text');
-            }
-        });
+        const unhoveredContent = 100;
+        const hoveredContent = window.innerWidth - unhoveredContent;
+        const normalContent = window.innerWidth/2;
+        const isMobile = checkIfMobile();
 
-        document.getElementById('engineer-content').addEventListener('mouseleave', function() {
-            if(window.innerWidth > 768) {
+        function changeEngineerSide(newZindex, newWidth) {
+            document.getElementById('engineer-content').style.zIndex = newZindex;
+            document.getElementById('engineer-content').style.width = newWidth + 'px';
+        }
+
+        function changeDeveloperSide(newZindex, newWidth) {
+            document.getElementById('developer-content').style.zIndex = newZindex;
+            document.getElementById('developer-content').style.width = newWidth + 'px';
+        }
+
+        function makeProfessionsTextsDisappear() {
+            document.getElementById('engineer-professional-text').classList.add('hide-profession-text');
+            document.getElementById('developer-professional-text').classList.add('hide-profession-text');
+        }
+
+        function backBothSidesToNormal() {
+            if( !isMobile ) {
                 document.getElementById('engineer-content').style.zIndex = 0;
-                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
-                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
-                document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
-                document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
-                document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
-            }
-        });
-
-        // Hovering Developer Side
-        document.getElementById('developer-content').addEventListener('mouseover', function() {
-            if(window.innerWidth > 768) {
-                document.getElementById('developer-content').style.zIndex = 1;
-                document.getElementById('developer-content').style.width = (window.innerWidth - 100) + 'px';
-                document.getElementById('engineer-content').style.width = '100px';
-                document.getElementById('developer-hovering').classList.add('content-hovering-disabled');
-                document.getElementById('engineer-professional-text').classList.add('hide-profession-text');
-                document.getElementById('developer-professional-text').classList.add('hide-profession-text');
-            }
-        });
-
-        document.getElementById('developer-content').addEventListener('mouseleave', function() {
-            if(window.innerWidth > 768) {
                 document.getElementById('developer-content').style.zIndex = 0;
-                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
-                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('engineer-content').style.width = normalContent + 'px';
+                document.getElementById('developer-content').style.width = normalContent + 'px';
+                document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
                 document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
                 document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
                 document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
             }
+        }
+
+        function makeEngineerSideOverlap() {
+            if( !isMobile ) {
+                changeEngineerSide(1, hoveredContent);
+                changeDeveloperSide(0, unhoveredContent);
+                document.getElementById('engineer-hovering').classList.add('content-hovering-disabled');
+                makeProfessionsTextsDisappear();
+            }
+        }
+
+        function makeDeveloperSideOverlap() {
+            if( !isMobile ) {
+                changeDeveloperSide(1, hoveredContent);
+                changeEngineerSide(0, unhoveredContent);
+                document.getElementById('developer-hovering').classList.add('content-hovering-disabled');
+                makeProfessionsTextsDisappear();
+            }
+        }
+
+        // Resizing Window
+        window.addEventListener('resize', () => {
+            backBothSidesToNormal();
+        });
+
+        // Engineer Side
+        document.getElementById('engineer-content').addEventListener('mouseover', function() {
+            makeEngineerSideOverlap();
+        });
+
+        document.getElementById('engineer-content').addEventListener('mouseleave', function() {
+            backBothSidesToNormal();
+        });
+
+        // Developer Side
+        document.getElementById('developer-content').addEventListener('mouseover', function() {
+            makeDeveloperSideOverlap();
+        });
+
+        document.getElementById('developer-content').addEventListener('mouseleave', function() {
+            backBothSidesToNormal();
         });
 
     </script>
