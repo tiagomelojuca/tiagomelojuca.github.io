@@ -408,22 +408,21 @@
         // Resizing Window
         window.addEventListener('resize', () => {
             updateClientWidth();
-            document.getElementById('engineer-content').style.width = normalContent + 'px';
-            document.getElementById('developer-content').style.width = normalContent + 'px';
+            backBothSidesToNormal();
         });
 
-        // Engineer Side
+        // Is Hovering a Side?
         document.getElementById('engineer-content').addEventListener('mouseover', function() {
             makeEngineerSideOverlap();
         });
 
-        document.getElementById('engineer-content').addEventListener('mouseleave', function() {
-            backBothSidesToNormal();
-        });
-
-        // Developer Side
         document.getElementById('developer-content').addEventListener('mouseover', function() {
             makeDeveloperSideOverlap();
+        });
+
+        // Is not Hovering any Side
+        document.getElementById('engineer-content').addEventListener('mouseleave', function() {
+            backBothSidesToNormal();
         });
 
         document.getElementById('developer-content').addEventListener('mouseleave', function() {
