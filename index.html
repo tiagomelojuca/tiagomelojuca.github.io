@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiago Melo Jucá | Personal Portfolio</title>
+
+    <style>
+
+        /* General */
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+        *, *::after, *::before {
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-app-region: no-drag;
+            cursor: default;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        body #wrapper-content {
+            height: 100vh;
+        }
+
+        /* Header */
+        body #wrapper-content #portfolio-header {
+            color: #fff;
+            background-color: #49c2c9;
+            display: flex;
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-header {
+                height: 130px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-header {
+                height: 100vh;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+            }
+        }
+
+        body #wrapper-content #portfolio-header #photo-container {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body #wrapper-content #portfolio-header #photo-container img {
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(17, 53, 58, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-header #photo-container {
+                margin: 20px 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-header #photo-container {
+                margin: 0 20px;
+            }
+        }
+
+        body #wrapper-content #portfolio-header p {
+            text-align: center;
+            font-size: 1.6em;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        body #wrapper-content #portfolio-header p.name {
+            font-weight: bold;
+            color: rgba(17, 53, 58, 1);
+        }
+
+        body #wrapper-content #portfolio-header p.question {
+            font-size: 1.2em;
+            padding: calc(20px + 0.2em);
+        }
+
+        body #wrapper-content #portfolio-header p.separator {
+            color: rgba(17, 53, 58, 1);
+        }
+
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-header p {
+                padding: 0 20px;
+            }
+
+            body #wrapper-content #portfolio-header p.name {
+                margin-bottom: 30px;
+            }
+
+            body #wrapper-content #portfolio-header p.separator {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-header #sides {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-header #sides {
+                width: 90%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        body #wrapper-content #portfolio-header #sides a {
+            color: #fff;
+            background-color: rgba(17, 53, 58, 1);
+            text-decoration: none;
+            padding: 20px;
+        }
+
+        /* Content */
+        body #wrapper-content #portfolio-content {
+            background-color: #49c2c9;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body #wrapper-content #portfolio-content #engineer-content-wrapper #engineer-content {
+            background: url('./assets/engineer.jpg') no-repeat top left;
+            transition: width 0.3s;
+        }
+
+        body #wrapper-content #portfolio-content #developer-content-wrapper #developer-content {
+            background: url('./assets/developer.jpg') no-repeat bottom right;
+            transition: width 0.3s;
+        }
+
+        body #wrapper-content #portfolio-content .content-hovering {
+            width: 100%;
+            height: 100%;
+            background-color: #49c2c9;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+
+        body #wrapper-content #portfolio-content .content-hovering-disabled {
+            opacity: 0;
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-content {
+                flex-direction: row;
+            }
+
+            body #wrapper-content #portfolio-content #engineer-content-wrapper #engineer-content {
+                background-size: 100vw;
+                width: 50vw;
+                height: calc(100vh - 200px);
+            }
+
+            body #wrapper-content #portfolio-content #developer-content-wrapper #developer-content {
+                background-size: 100vw;
+                width: 50vw;
+                height: calc(100vh - 200px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-content {
+                flex-direction: column;
+            }
+
+            body #wrapper-content #portfolio-content #engineer-content-wrapper #engineer-content {
+                background-size: cover;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            body #wrapper-content #portfolio-content #developer-content-wrapper #developer-content {
+                background-size: cover;
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+        /* Footer */
+        body #wrapper-content #portfolio-footer {
+            background-color: #33a1da;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body #wrapper-content #portfolio-footer a {
+            height: 60%;
+            overflow: hidden;
+        }
+
+        body #wrapper-content #portfolio-footer a img {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+            height: 100%;
+            width: auto;
+        }
+
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-footer a {
+                transition: opacity 0.3s;
+                opacity: 0.6;
+            }
+
+            body #wrapper-content #portfolio-footer a:hover {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="wrapper-content">
+
+        <header id="portfolio-header">
+            <div id="photo-container">
+                <img src="./assets/photo.jpg" alt="Tiago Photo">
+            </div>
+
+            <p class="name">Tiago Melo Jucá</p>
+            <p class="separator">|</p>
+            <p class="description">Civil engineer and back-end developer</p>
+            <p class="separator">|</p>
+            <p class="question">Which side of me you wanna know?</p>
+
+            <div id="sides">
+                <a href="#">Civil Engineer</a>
+                <a href="#">Developer</a>
+            </div>
+        </header>
+
+        <section id="portfolio-content">
+            <div id="engineer-content-wrapper">
+                <section id="engineer-content">
+                    <div id="engineer-hovering" class="content-hovering"></div>
+                </section>
+            </div>
+
+            <div id="developer-content-wrapper">
+                <section id="developer-content">
+                    <div id="developer-hovering" class="content-hovering"></div>
+                </section>
+            </div>
+        </section>
+
+        <footer id="portfolio-footer">
+            <a href="https://www.modelevsistemas.com.br/" target="_blank"><img src="./assets/modelev.png" alt="Modelev Sistemas"></a>
+        </footer>
+
+    </div>
+
+    <script>
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 768) {
+                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
+            }
+        });
+
+        // Hovering engineer Side
+        document.getElementById('engineer-content').addEventListener('mouseover', function() {
+            if(window.innerWidth > 768) {
+                document.getElementById('engineer-content').style.zIndex = 1;
+                document.getElementById('engineer-content').style.width = (window.innerWidth - 100) + 'px';
+                document.getElementById('developer-content').style.width = '100px';
+                document.getElementById('engineer-hovering').classList.add('content-hovering-disabled');
+            }
+        });
+
+        document.getElementById('engineer-content').addEventListener('mouseleave', function() {
+            if(window.innerWidth > 768) {
+                document.getElementById('engineer-content').style.zIndex = 0;
+                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
+            }
+        });
+
+        // Hovering Developer Side
+        document.getElementById('developer-content').addEventListener('mouseover', function() {
+            if(window.innerWidth > 768) {
+                document.getElementById('developer-content').style.zIndex = 1;
+                document.getElementById('developer-content').style.width = (window.innerWidth - 100) + 'px';
+                document.getElementById('engineer-content').style.width = '100px';
+                document.getElementById('developer-hovering').classList.add('content-hovering-disabled');
+            }
+        });
+
+        document.getElementById('developer-content').addEventListener('mouseleave', function() {
+            if(window.innerWidth > 768) {
+                document.getElementById('developer-content').style.zIndex = 0;
+                document.getElementById('developer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('engineer-content').style.width = (window.innerWidth/2) + 'px';
+                document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
+            }
+        });
+
+    </script>
+</body>
+</html>
