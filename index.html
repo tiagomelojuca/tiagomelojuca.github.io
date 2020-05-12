@@ -848,6 +848,7 @@
         let normalContent = window.innerWidth/2;
         let isEngineerSideActive = false;
         let isDeveloperSideActive = false;
+        let isEdgeIconFree = true;
 
         function toggleIfEngineerSideActive() {
             if( isEngineerSideActive ) {
@@ -950,20 +951,42 @@
         function toggleEdgeButton(side, animTime) {
             if ( side === "engineer" ) {
                 if( !isEngineerSideActive ) {
-                    document.getElementById('lattes-button').classList.toggle('button-deactivated');
-                    document.getElementById('lattes-button').classList.toggle('button-hidden');
+                    if( isEdgeIconFree ) {
+                        document.getElementById('lattes-button').classList.toggle('button-deactivated');
+                        document.getElementById('lattes-button').classList.toggle('button-hidden');
+                    } else {
+                        document.getElementById('lattes-button').classList.toggle('button-hidden');
+                        isEdgeIconFree = true;
+                    }
                 } else {
                     document.getElementById('lattes-button').classList.toggle('button-hidden');
-                    setTimeout( function(){ document.getElementById('lattes-button').classList.toggle('button-deactivated'); }, animTime * 1000 );
+                    isEdgeIconFree = false;
+                    setTimeout( function(){
+                        if( !isEdgeIconFree ) {
+                            document.getElementById('lattes-button').classList.toggle('button-deactivated');
+                            isEdgeIconFree = true;
+                        }
+                    }, animTime * 1000 );
                 }
             }
             if ( side === "developer" ) {
                 if( !isDeveloperSideActive ) {
-                    document.getElementById('github-button').classList.toggle('button-deactivated');
-                    document.getElementById('github-button').classList.toggle('button-hidden');
+                    if( isEdgeIconFree ) {
+                        document.getElementById('github-button').classList.toggle('button-deactivated');
+                        document.getElementById('github-button').classList.toggle('button-hidden');
+                    } else {
+                        document.getElementById('github-button').classList.toggle('button-hidden');
+                        isEdgeIconFree = true;
+                    }
                 } else {
                     document.getElementById('github-button').classList.toggle('button-hidden');
-                    setTimeout( function(){ document.getElementById('github-button').classList.toggle('button-deactivated'); }, animTime * 1000 );
+                    isEdgeIconFree = false;
+                    setTimeout( function(){
+                        if( !isEdgeIconFree ) {
+                            document.getElementById('github-button').classList.toggle('button-deactivated');
+                            isEdgeIconFree = true;
+                        }
+                    }, animTime * 1000 );
                 }
             }
         }

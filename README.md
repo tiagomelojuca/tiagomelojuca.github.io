@@ -6,4 +6,3 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 - Add link for github, contact and modelev
 - Fix menu button overlapping on some screens
 - Add some interaction in Header
-- Fix edge icons blinking when double-tap
