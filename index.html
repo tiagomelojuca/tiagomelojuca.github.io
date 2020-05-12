@@ -670,18 +670,27 @@
             }
         }
 
+        function hideContentWhenFlip(side) {
+            if( side === "engineer" ) {
+                document.getElementById('engineer-hovering').classList.toggle('hideContent');
+                document.getElementById('engineer-text').classList.toggle('hideContent');
+            }
+            if ( side === "developer" ) {
+                document.getElementById('developer-hovering').classList.toggle('hideContent');
+                document.getElementById('developer-text').classList.toggle('hideContent');
+            }
+        }
+
         function flipEngineerSide() {
             document.getElementById('engineer-flipbox').classList.toggle('flipbox-container-clicked');
-            document.getElementById('engineer-hovering').classList.toggle('hideContent');
-            document.getElementById('engineer-text').classList.toggle('hideContent');
+            hideContentWhenFlip('engineer');
             document.getElementById('developer-content-wrapper').classList.toggle('activePointerCursor');
             toggleIfEngineerSideActive();
         }
 
         function flipDeveloperSide() {
             document.getElementById('developer-flipbox').classList.toggle('flipbox-container-clicked');
-            document.getElementById('developer-hovering').classList.toggle('hideContent');
-            document.getElementById('developer-text').classList.toggle('hideContent');
+            hideContentWhenFlip('developer');
             document.getElementById('engineer-content-wrapper').classList.toggle('activePointerCursor');
             toggleIfDeveloperSideActive();
         }
