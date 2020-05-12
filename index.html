@@ -236,10 +236,12 @@
             padding: 16px;
             box-sizing: border-box;
             border-radius: 50%;
-            transition: background 0.3s;
         }
 
         @media (min-width: 769px) {
+            body #wrapper-content #portfolio-header #menu-button a {
+                transition: background 0.3s;
+            }
             body #wrapper-content #portfolio-header #menu-button a:hover {
                 background-color: rgba(17, 53, 58, 1);
             }
@@ -616,7 +618,7 @@
             </div>
 
             <div id="menu-button">
-                <a href="#"><img src="./assets/menubtn.svg" alt="Menu Button"></a>
+                <a id="menu-button-link" href="#"><img src="./assets/menubtn.svg" alt="Menu Button"></a>
             </div>
         </header>
 
@@ -1027,6 +1029,20 @@
                 flipDeveloperSide();
             }
         });
+
+        // Dev
+        function recolorMenuButton() {
+            if( window.pageYOffset <= (window.innerHeight - 64) ) {
+                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(51, 137, 144, 1)';
+            } else {
+                if( window.pageYOffset >= (window.innerHeight - 16) ) {
+                    document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
+                } else {
+                    // transition
+                }
+            }
+        }
+        document.addEventListener('scroll', recolorMenuButton);
 
     </script>
 </body>
