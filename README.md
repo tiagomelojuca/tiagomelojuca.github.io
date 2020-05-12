@@ -5,5 +5,6 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 - Add modal for menu links
 - Add link for github, contact and modelev
 - Fix menu button overlapping on some screens
+- Fix unexpected behavior when changing from desktop to mobile if a side is active
 - Add some interaction in Header
 - Add a loader container
