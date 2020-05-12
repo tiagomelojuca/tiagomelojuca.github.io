@@ -4,5 +4,4 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 # To-do
 - Add modal for menu links
 - Add link for github, contact and modelev
-- Add Rocketseat's name in Developer Side
 - Fix menu button overlapping on some screens
