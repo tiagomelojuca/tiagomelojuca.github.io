@@ -167,6 +167,9 @@
             background-color: rgba(17, 53, 58, 1);
             display: flex;
             overflow: hidden;
+        }
+
+        body #wrapper-content #portfolio-content .activePointerCursor {
             cursor: pointer;
         }
 
@@ -310,6 +313,10 @@
             transform: rotateY(180deg);
         }
 
+        .hideContent {
+            opacity: 0 !important;
+        }
+
         /* Footer */
         body #wrapper-content #portfolio-footer {
             background-color: #33a1da;
@@ -369,7 +376,7 @@
         </header>
 
         <section id="portfolio-content">
-            <div id="engineer-content-wrapper">
+            <div class="activePointerCursor" id="engineer-content-wrapper">
                 <section id="engineer-content">
 
                     <div id="engineer-flipbox" class="flipbox-container">
@@ -392,7 +399,7 @@
                 </section>
             </div>
 
-            <div id="developer-content-wrapper">
+            <div class="activePointerCursor" id="developer-content-wrapper">
                 <section id="developer-content">
 
                     <div id="developer-flipbox" class="flipbox-container">
@@ -436,6 +443,24 @@
         let hoveredContent = window.innerWidth - unhoveredContent;
         let normalContent = window.innerWidth/2;
         const isMobile = checkIfMobile();
+        let isEngineerSideActive = false;
+        let isDeveloperSideActive = false;
+
+        function toggleIfEngineerSideActive() {
+            if( isEngineerSideActive ) {
+                isEngineerSideActive = false;
+            } else {
+                isEngineerSideActive = true;
+            }
+        }
+
+        function toggleIfDeveloperSideActive() {
+            if( isDeveloperSideActive ) {
+                isDeveloperSideActive = false;
+            } else {
+                isDeveloperSideActive = true;
+            }
+        }
 
         function updateClientWidth() {
             hoveredContent = window.innerWidth - unhoveredContent;
@@ -459,33 +484,55 @@
 
         function backBothSidesToNormal() {
             if( !isMobile ) {
-                document.getElementById('engineer-content').style.zIndex = 0;
-                document.getElementById('developer-content').style.zIndex = 0;
-                document.getElementById('engineer-content').style.width = normalContent + 'px';
-                document.getElementById('developer-content').style.width = normalContent + 'px';
-                document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
-                document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
-                document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
-                document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
+                if( !isEngineerSideActive && !isDeveloperSideActive ) {
+                    document.getElementById('engineer-content').style.zIndex = 0;
+                    document.getElementById('developer-content').style.zIndex = 0;
+                    document.getElementById('engineer-content').style.width = normalContent + 'px';
+                    document.getElementById('developer-content').style.width = normalContent + 'px';
+                    document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
+                    document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
+                    document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
+                    document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
+                }
             }
         }
 
         function makeEngineerSideOverlap() {
             if( !isMobile ) {
-                changeEngineerSide(1, hoveredContent);
-                changeDeveloperSide(0, unhoveredContent);
-                document.getElementById('engineer-hovering').classList.add('content-hovering-disabled');
-                makeProfessionsTextsDisappear();
+                if( !isEngineerSideActive && !isDeveloperSideActive ) {
+                    changeEngineerSide(1, hoveredContent);
+                    changeDeveloperSide(0, unhoveredContent);
+                    document.getElementById('engineer-hovering').classList.add('content-hovering-disabled');
+                    makeProfessionsTextsDisappear();
+                }
             }
         }
 
         function makeDeveloperSideOverlap() {
             if( !isMobile ) {
-                changeDeveloperSide(1, hoveredContent);
-                changeEngineerSide(0, unhoveredContent);
-                document.getElementById('developer-hovering').classList.add('content-hovering-disabled');
-                makeProfessionsTextsDisappear();
+                if( !isEngineerSideActive && !isDeveloperSideActive ) {
+                    changeDeveloperSide(1, hoveredContent);
+                    changeEngineerSide(0, unhoveredContent);
+                    document.getElementById('developer-hovering').classList.add('content-hovering-disabled');
+                    makeProfessionsTextsDisappear();
+                }
             }
+        }
+
+        function flipEngineerSide() {
+            document.getElementById('engineer-flipbox').classList.toggle('flipbox-container-clicked');
+            document.getElementById('engineer-hovering').classList.toggle('hideContent');
+            document.getElementById('engineer-text').classList.toggle('hideContent');
+            document.getElementById('developer-content-wrapper').classList.toggle('activePointerCursor');
+            toggleIfEngineerSideActive();
+        }
+
+        function flipDeveloperSide() {
+            document.getElementById('developer-flipbox').classList.toggle('flipbox-container-clicked');
+            document.getElementById('developer-hovering').classList.toggle('hideContent');
+            document.getElementById('developer-text').classList.toggle('hideContent');
+            document.getElementById('engineer-content-wrapper').classList.toggle('activePointerCursor');
+            toggleIfDeveloperSideActive();
         }
 
         // Resizing Window
@@ -514,11 +561,15 @@
         
         // Dev
         document.getElementById('engineer-text').addEventListener('click', function() {
-            document.getElementById('engineer-flipbox').classList.toggle('flipbox-container-clicked');
+            if( !isDeveloperSideActive ) {
+                flipEngineerSide();
+            }
         });
 
         document.getElementById('developer-text').addEventListener('click', function() {
-            document.getElementById('developer-flipbox').classList.toggle('flipbox-container-clicked');
+            if( !isEngineerSideActive ) {
+                flipDeveloperSide();
+            }
         });
 
     </script>
