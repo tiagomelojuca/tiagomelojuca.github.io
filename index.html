@@ -271,6 +271,11 @@
             }
         }
 
+        .profession-icon {
+            width: 128px;
+            height: 128px;
+        }
+
         /* Flipbox */
         .flipbox-container {
             background-color: rgba(17, 53, 58, 1);
@@ -311,6 +316,13 @@
             background-color: rgba(31, 96, 122, 1);
             color: white;
             transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flipbox-inner-text h1 {
+            margin-top: 0;
         }
 
         .hideContent {
@@ -385,7 +397,25 @@
                                 <div id="engineer-bgimage-container"></div>
                             </div>
                             <div class="flipbox-back">
-                                <h1>Asdrubas</h1>
+                                <div class="flipbox-inner-text">
+                                    <h1>Civil Engineer</h1>
+                                    <br>
+                                    <img class="profession-icon" src="./assets/icon-engineer.svg" alt="Engineer Icon">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Graduating in Civil Engineering (IFCE, Brazil)
+                                    <br>
+                                    <br>
+                                    Analysis and Design of Post-Tensioned Buildings (ADAPT Corporation)
+                                    <br>
+                                    <br>
+                                    Specialist in post-tensioned structures (INAEP)
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Worked for three years with reinforced concrete and post-tensioned structures at CCP, Brazil
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -408,7 +438,25 @@
                                 <div id="developer-bgimage-container"></div>
                             </div>
                             <div class="flipbox-back">
-                                <h1>Asdrubas</h1>
+                                <div class="flipbox-inner-text">
+                                    <h1>Back-end Developer</h1>
+                                    <br>
+                                    <img class="profession-icon" src="./assets/icon-developer.svg" alt="Developer Icon">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Graduating in System Analysis and Development (UNICSUL)
+                                    <br>
+                                    <br>
+                                    Knowledge in HTML, CSS and JavaScript (Origamid WebDev Course)
+                                    <br>
+                                    <br>
+                                    Knowledge in NodeJS, ReactJS and React Native (GoStack Bootcamp)
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Founding partner and back-end developer at company Modelev Systems, Brazil
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -416,7 +464,7 @@
                     <div id="developer-hovering" class="content-hovering"></div>
 
                     <div id="developer-text" class="content-text">
-                        <p id="developer-professional-text">Developer</p>
+                        <p id="developer-professional-text">Back-end<br>Developer</p>
                     </div>
 
                 </section>
