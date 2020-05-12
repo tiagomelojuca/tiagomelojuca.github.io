@@ -580,10 +580,10 @@
             }
         }
 
-        const unhoveredContent = window.innerWidth/4;
+        let isMobile = checkIfMobile();
+        let unhoveredContent = window.innerWidth/4;
         let hoveredContent = window.innerWidth - unhoveredContent;
         let normalContent = window.innerWidth/2;
-        const isMobile = checkIfMobile();
         let isEngineerSideActive = false;
         let isDeveloperSideActive = false;
 
@@ -604,6 +604,8 @@
         }
 
         function updateClientWidth() {
+            isMobile = checkIfMobile();
+            unhoveredContent = window.innerWidth/4;
             hoveredContent = window.innerWidth - unhoveredContent;
             normalContent = window.innerWidth/2;
 
@@ -700,7 +702,16 @@
         // Resizing Window
         window.addEventListener('resize', () => {
             updateClientWidth();
-            backBothSidesToNormal();
+            if( !isMobile ) {
+                if( isEngineerSideActive && isDeveloperSideActive ) {
+                    flipEngineerSide();
+                    flipDeveloperSide();
+                }
+                backBothSidesToNormal();
+            } else {
+                document.getElementById('engineer-content').style.width = window.innerWidth + 'px';
+                document.getElementById('developer-content').style.width = window.innerWidth + 'px';
+            }
         });
 
         // Is Hovering a Side?
