@@ -236,6 +236,12 @@
             overflow: hidden;
         }
 
+        @media (max-width: 768px) {
+            body #wrapper-content #portfolio-content .mobileAlwaysPointerCursor {
+                cursor: pointer;
+            }
+        }
+
         @media (min-width: 769px) {
             body #wrapper-content #portfolio-content .activePointerCursor {
                 cursor: pointer;
@@ -547,7 +553,7 @@
         </header>
 
         <section id="portfolio-content">
-            <div class="activePointerCursor" id="engineer-content-wrapper">
+            <div class="activePointerCursor mobileAlwaysPointerCursor" id="engineer-content-wrapper">
                 <section id="engineer-content">
 
                     <div id="engineer-flipbox" class="flipbox-container">
@@ -589,7 +595,7 @@
                 </section>
             </div>
 
-            <div class="activePointerCursor" id="developer-content-wrapper">
+            <div class="activePointerCursor mobileAlwaysPointerCursor" id="developer-content-wrapper">
                 <section id="developer-content">
 
                     <div id="developer-flipbox" class="flipbox-container">
