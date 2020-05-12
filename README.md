@@ -5,5 +5,5 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 - Add modal for menu links
 - Add link for github, contact and modelev
 - Fix menu button overlapping on some screens
-- Change menu button color when discovering portfolio content
 - Add some interaction in Header
+- Fix edge icons blinking when double-tap
