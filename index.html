@@ -181,8 +181,10 @@
             overflow: hidden;
         }
 
-        body #wrapper-content #portfolio-content .activePointerCursor {
-            cursor: pointer;
+        @media (min-width: 769px) {
+            body #wrapper-content #portfolio-content .activePointerCursor {
+                cursor: pointer;
+            }
         }
 
         body #wrapper-content #portfolio-content #engineer-content-wrapper #engineer-content {
@@ -719,15 +721,21 @@
             backBothSidesToNormal();
         });
         
-        // Dev
+        // Make it flip when touch
         document.getElementById('engineer-text').addEventListener('click', function() {
-            if( !isDeveloperSideActive ) {
+            if( !isMobile && !isDeveloperSideActive ) {
+                flipEngineerSide();
+            }
+            if( isMobile ) {
                 flipEngineerSide();
             }
         });
 
         document.getElementById('developer-text').addEventListener('click', function() {
-            if( !isEngineerSideActive ) {
+            if( !isMobile && !isEngineerSideActive ) {
+                flipDeveloperSide();
+            }
+            if( isMobile ) {
                 flipDeveloperSide();
             }
         });
