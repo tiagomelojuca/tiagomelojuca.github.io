@@ -97,6 +97,18 @@
             color: rgba(17, 53, 58, 1);
         }
 
+        @media (min-width: 769px) and (max-width: 1024px) {
+            body #wrapper-content #portfolio-header p {
+                font-size: 1em;
+                padding: 5px;
+            }
+
+            body #wrapper-content #portfolio-header p.question {
+                font-size: 0.8em;
+                padding: calc(5px + 0.1em);
+            }
+        }
+
         @media (max-width: 768px) {
             body #wrapper-content #portfolio-header p {
                 padding: 0 20px;
@@ -193,6 +205,15 @@
             background: url('./assets/developer.jpg') no-repeat bottom right;
         }
 
+        @media (max-width: 768px) {
+            #engineer-bgimage-container {
+                background: no-repeat center center;
+            }
+            #developer-bgimage-container {
+                background: no-repeat center center;
+            }
+        }
+
         body #wrapper-content #portfolio-content .content-hovering {
             width: 100%;
             height: 100%;
@@ -271,11 +292,6 @@
             }
         }
 
-        .profession-icon {
-            width: 128px;
-            height: 128px;
-        }
-
         /* Flipbox */
         .flipbox-container {
             background-color: rgba(17, 53, 58, 1);
@@ -321,8 +337,81 @@
             justify-content: center;
         }
 
+        .hide-if-tall-enough {
+            display: none;
+        }
+
+        .flipbox-back .profession-icon {
+            width: 128px;
+            height: 128px;
+        }
+
+        .flipbox-inner-text {
+            padding: 10px;
+        }
+
         .flipbox-inner-text h1 {
             margin-top: 0;
+        }
+
+        @media (max-height: 650px) {
+            .flipbox-back .profession-icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            .flipbox-inner-text {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .flipbox-back .profession-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .flipbox-inner-text {
+                font-size: 0.6em;
+            }
+        }
+
+        @media (max-height: 400px) {
+            .flipbox-back .profession-icon {
+                display: none;
+            }
+
+            .flipbox-inner-text {
+                font-size: 0.6em;
+            }
+
+            .hide-if-too-small {
+                display: none;
+            }
+        }
+
+        @media (max-height: 360px) {
+            body #wrapper-content #portfolio-content .content-text p {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-height: 340px) {
+            .flipbox-back .profession-icon {
+                display: none;
+            }
+
+            .flipbox-inner-text {
+                display: none;
+            }
+
+            .hide-if-too-small {
+                display: none;
+            }
+
+            .hide-if-tall-enough {
+                display: block !important;
+            }
         }
 
         .hideContent {
@@ -399,10 +488,10 @@
                             <div class="flipbox-back">
                                 <div class="flipbox-inner-text">
                                     <h1>Civil Engineer</h1>
-                                    <br>
+                                    <div class="hide-if-too-small"><br>
                                     <img class="profession-icon" src="./assets/icon-engineer.svg" alt="Engineer Icon">
                                     <br>
-                                    <br>
+                                    <br></div>
                                     <br>
                                     Graduating in Civil Engineering (IFCE, Brazil)
                                     <br>
@@ -416,6 +505,7 @@
                                     <br>
                                     Worked for three years with reinforced concrete and post-tensioned structures at CCP, Brazil
                                 </div>
+                                <p class="hide-if-tall-enough">Browser height too small. Please resize to see this content.</p>
                             </div>
                         </div>
                     </div>
@@ -440,10 +530,10 @@
                             <div class="flipbox-back">
                                 <div class="flipbox-inner-text">
                                     <h1>Back-end Developer</h1>
-                                    <br>
+                                    <div class="hide-if-too-small"><br>
                                     <img class="profession-icon" src="./assets/icon-developer.svg" alt="Developer Icon">
                                     <br>
-                                    <br>
+                                    <br></div>
                                     <br>
                                     Graduating in System Analysis and Development (UNICSUL)
                                     <br>
@@ -457,6 +547,7 @@
                                     <br>
                                     Founding partner and back-end developer at company Modelev Systems, Brazil
                                 </div>
+                                <p class="hide-if-tall-enough">Browser height too small. Please resize to see this content.</p>
                             </div>
                         </div>
                     </div>
@@ -513,6 +604,18 @@
         function updateClientWidth() {
             hoveredContent = window.innerWidth - unhoveredContent;
             normalContent = window.innerWidth/2;
+
+            if( !isMobile ) {
+                if( isEngineerSideActive ) {
+                    changeEngineerSide(1, hoveredContent);
+                    changeDeveloperSide(0, unhoveredContent);
+                }
+
+                if( isDeveloperSideActive ) {
+                    changeDeveloperSide(1, hoveredContent);
+                    changeEngineerSide(0, unhoveredContent);
+                }
+            }
         }
 
         function changeEngineerSide(newZindex, newWidth) {
