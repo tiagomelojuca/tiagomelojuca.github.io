@@ -228,7 +228,7 @@
             z-index: 99;
         }
 
-        body #wrapper-content #portfolio-header #menu-button a {
+        body #wrapper-content #portfolio-header #menu-button button {
             display: block;
             width: 48px;
             height: 48px;
@@ -236,18 +236,21 @@
             padding: 16px;
             box-sizing: border-box;
             border-radius: 50%;
+            border: none;
+            outline: none;
+            cursor: pointer;
         }
 
         @media (min-width: 769px) {
-            body #wrapper-content #portfolio-header #menu-button a {
+            body #wrapper-content #portfolio-header #menu-button button {
                 transition: background 0.3s;
             }
-            body #wrapper-content #portfolio-header #menu-button a:hover {
+            body #wrapper-content #portfolio-header #menu-button button:hover {
                 background-color: rgba(17, 53, 58, 1);
             }
         }
 
-        body #wrapper-content #portfolio-header #menu-button a img {
+        body #wrapper-content #portfolio-header #menu-button button img {
             filter: invert(100%) sepia(3%) saturate(15%) hue-rotate(255deg) brightness(116%) contrast(100%);
         }
 
@@ -624,7 +627,7 @@
             </div>
 
             <div id="menu-button">
-                <a id="menu-button-link" href="#"><img src="./assets/menubtn.svg" alt="Menu Button"></a>
+                <button id="menu-button-link"><img src="./assets/menubtn.svg" alt="Menu Button"></a>
             </div>
         </header>
 
@@ -1007,21 +1010,6 @@
             toggleIfDeveloperSideActive();
         }
 
-        // Resizing Window
-        window.addEventListener('resize', () => {
-            updateClientWidth();
-            if( !isMobile ) {
-                if( isEngineerSideActive && isDeveloperSideActive ) {
-                    flipEngineerSide();
-                    flipDeveloperSide();
-                }
-                backBothSidesToNormal();
-            } else {
-                document.getElementById('engineer-content').style.width = window.innerWidth + 'px';
-                document.getElementById('developer-content').style.width = window.innerWidth + 'px';
-            }
-        });
-
         // Is Hovering a Side?
         document.getElementById('engineer-content').addEventListener('mouseover', function() {
             makeEngineerSideOverlap();
@@ -1059,27 +1047,54 @@
             }
         });
 
-        // Dev
+        // Change color of menu button
         function recolorMenuButton() {
+            if( isMobile ) {
+                if( window.pageYOffset <= (window.innerHeight - 64) ) {
+                    document.getElementById('menu-button-link').style.backgroundImage = '';
+                    document.getElementById('menu-button-link').style.backgroundColor = 'rgba(51, 137, 144, 1)';
+                }
 
-            if( window.pageYOffset <= (window.innerHeight - 64) ) {
+                if( (window.pageYOffset > (window.innerHeight - 64)) && (window.pageYOffset < (window.innerHeight - 16)) ) {
+                    let percentual = (1 - ((window.innerHeight - window.pageYOffset - 16) / 48)) * 100;
+                    document.getElementById('menu-button-link').style.backgroundImage = 'linear-gradient(0deg, rgba(73, 194, 201, 1) '+ percentual + '%, rgba(51, 137, 144, 1) '+ percentual + '%)';
+                    document.getElementById('menu-button-link').style.backgroundColor = 'rgba(0, 0, 0, 0)';
+                }
+
+                if( window.pageYOffset >= (window.innerHeight - 16) ) {
+                    document.getElementById('menu-button-link').style.backgroundImage = '';
+                    document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
+                }
+            } else {
                 document.getElementById('menu-button-link').style.backgroundImage = '';
-                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(51, 137, 144, 1)';
+                document.getElementById('menu-button-link').style.backgroundColor = '';
             }
-
-            if( (window.pageYOffset > (window.innerHeight - 64)) && (window.pageYOffset < (window.innerHeight - 16)) ) {
-                let percentual = (1 - ((window.innerHeight - window.pageYOffset - 16) / 48)) * 100;
-                document.getElementById('menu-button-link').style.backgroundImage = 'linear-gradient(0deg, rgba(73, 194, 201, 1) '+ percentual + '%, rgba(51, 137, 144, 1) '+ percentual + '%)';
-                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(0, 0, 0, 0)';
-            }
-
-            if( window.pageYOffset >= (window.innerHeight - 16) ) {
-                document.getElementById('menu-button-link').style.backgroundImage = '';
-                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
-            }
-
         }
-        document.addEventListener('scroll', recolorMenuButton);
+
+        function shouldAddRecoloring() {
+            if( isMobile ) {
+                document.addEventListener('scroll', recolorMenuButton);
+            } else {
+                document.removeEventListener('scroll', recolorMenuButton);
+            }
+        }
+        shouldAddRecoloring();
+
+        // Resizing Window
+        window.addEventListener('resize', () => {
+            updateClientWidth();
+            shouldAddRecoloring();
+            if( !isMobile ) {
+                if( isEngineerSideActive && isDeveloperSideActive ) {
+                    flipEngineerSide();
+                    flipDeveloperSide();
+                }
+                backBothSidesToNormal();
+            } else {
+                document.getElementById('engineer-content').style.width = window.innerWidth + 'px';
+                document.getElementById('developer-content').style.width = window.innerWidth + 'px';
+            }
+        });
 
     </script>
 </body>
