@@ -1070,20 +1070,11 @@
                 document.getElementById('menu-button-link').style.backgroundColor = '';
             }
         }
-
-        function shouldAddRecoloring() {
-            if( isMobile ) {
-                document.addEventListener('scroll', recolorMenuButton);
-            } else {
-                document.removeEventListener('scroll', recolorMenuButton);
-            }
-        }
-        shouldAddRecoloring();
+        document.addEventListener('scroll', recolorMenuButton);
 
         // Resizing Window
         window.addEventListener('resize', () => {
             updateClientWidth();
-            shouldAddRecoloring();
             if( !isMobile ) {
                 if( isEngineerSideActive && isDeveloperSideActive ) {
                     flipEngineerSide();
