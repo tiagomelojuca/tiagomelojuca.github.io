@@ -1032,15 +1032,23 @@
 
         // Dev
         function recolorMenuButton() {
+
             if( window.pageYOffset <= (window.innerHeight - 64) ) {
+                document.getElementById('menu-button-link').style.backgroundImage = '';
                 document.getElementById('menu-button-link').style.backgroundColor = 'rgba(51, 137, 144, 1)';
-            } else {
-                if( window.pageYOffset >= (window.innerHeight - 16) ) {
-                    document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
-                } else {
-                    // transition
-                }
             }
+
+            if( (window.pageYOffset > (window.innerHeight - 64)) && (window.pageYOffset < (window.innerHeight - 16)) ) {
+                let percentual = (1 - ((window.innerHeight - window.pageYOffset - 16) / 48)) * 100;
+                document.getElementById('menu-button-link').style.backgroundImage = 'linear-gradient(0deg, rgba(73, 194, 201, 1) '+ percentual + '%, rgba(51, 137, 144, 1) '+ percentual + '%)';
+                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(0, 0, 0, 0)';
+            }
+
+            if( window.pageYOffset >= (window.innerHeight - 16) ) {
+                document.getElementById('menu-button-link').style.backgroundImage = '';
+                document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
+            }
+
         }
         document.addEventListener('scroll', recolorMenuButton);
 
