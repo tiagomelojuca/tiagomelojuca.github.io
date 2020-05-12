@@ -2,4 +2,7 @@
 Repo for my own personal portfolio page, as civil engineer and developer, which I'd like to keep public as a template
 
 # To-do
-- Modal for menu links
+- Add modal for menu links
+- Add link for github, contact and modelev
+- Add Rocketseat's name in Developer Side
+- Fix menu button overlapping on some screens
