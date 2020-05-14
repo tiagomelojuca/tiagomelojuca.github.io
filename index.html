@@ -22,6 +22,7 @@
         }
 
         body {
+            background-color: rgba(17, 53, 58, 1);
             color: rgba(17, 53, 58, 1);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -918,6 +919,15 @@
             }
         }
 
+        function backBothSidesToMobile() {
+            document.getElementById('engineer-content').style.zIndex = 0;
+            document.getElementById('developer-content').style.zIndex = 0;
+            document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
+            document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
+            document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
+            document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
+        }
+
         function makeEngineerSideOverlap() {
             if( !isMobile ) {
                 if( !isEngineerSideActive && !isDeveloperSideActive ) {
@@ -1082,6 +1092,12 @@
                 }
                 backBothSidesToNormal();
             } else {
+                if( isEngineerSideActive ) {
+                    backBothSidesToMobile();
+                }
+                if( isDeveloperSideActive ) {
+                    backBothSidesToMobile();
+                }
                 document.getElementById('engineer-content').style.width = window.innerWidth + 'px';
                 document.getElementById('developer-content').style.width = window.innerWidth + 'px';
             }
