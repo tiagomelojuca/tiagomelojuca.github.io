@@ -1060,18 +1060,18 @@
         // Change color of menu button
         function recolorMenuButton() {
             if( isMobile ) {
-                if( window.pageYOffset <= (window.innerHeight - 64) ) {
+                if( window.pageYOffset <= (document.getElementById('portfolio-header').offsetHeight - 64) ) {
                     document.getElementById('menu-button-link').style.backgroundImage = '';
                     document.getElementById('menu-button-link').style.backgroundColor = 'rgba(51, 137, 144, 1)';
                 }
 
-                if( (window.pageYOffset > (window.innerHeight - 64)) && (window.pageYOffset < (window.innerHeight - 16)) ) {
-                    let percentual = (1 - ((window.innerHeight - window.pageYOffset - 16) / 48)) * 100;
+                if( (window.pageYOffset > (document.getElementById('portfolio-header').offsetHeight - 64)) && (window.pageYOffset < (document.getElementById('portfolio-header').offsetHeight - 16)) ) {
+                    let percentual = (1 - ((document.getElementById('portfolio-header').offsetHeight - window.pageYOffset - 16) / 48)) * 100;
                     document.getElementById('menu-button-link').style.backgroundImage = 'linear-gradient(0deg, rgba(73, 194, 201, 1) '+ percentual + '%, rgba(51, 137, 144, 1) '+ percentual + '%)';
                     document.getElementById('menu-button-link').style.backgroundColor = 'rgba(0, 0, 0, 0)';
                 }
 
-                if( window.pageYOffset >= (window.innerHeight - 16) ) {
+                if( window.pageYOffset >= (document.getElementById('portfolio-header').offsetHeight - 16) ) {
                     document.getElementById('menu-button-link').style.backgroundImage = '';
                     document.getElementById('menu-button-link').style.backgroundColor = 'rgba(73, 194, 201, 1)';
                 }

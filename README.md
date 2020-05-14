@@ -6,4 +6,4 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 - Fix menu button overlapping on some screens
 - Add some interaction in Header
 - Add a loader container
-- Fix button change color wrong in mobile due to 100vh problem
+- When mobile > 768px turns impossible to navigate
