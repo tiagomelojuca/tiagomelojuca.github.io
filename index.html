@@ -115,8 +115,10 @@
             cursor: pointer;
         }
 
-        body #modal-wrapper #close-modal-button:hover {
-            background-color: rgba(73, 194, 201, 1);
+        @media (min-width: 769px) {
+            body #modal-wrapper #close-modal-button:hover {
+                background-color: rgba(73, 194, 201, 1);
+            }
         }
 
         body #modal-wrapper #modal-container {
@@ -130,6 +132,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
         }
 
         body #modal-wrapper #modal-container p {
@@ -167,8 +170,10 @@
             transition: background 0.3s;
         }
 
-        body #modal-wrapper ul li a:hover {
-            background-color: rgba(73, 194, 201, 1);
+        @media (min-width: 769px) {
+            body #modal-wrapper ul li a:hover {
+                background-color: rgba(73, 194, 201, 1);
+            }
         }
 
         /* Header */
@@ -1710,10 +1715,24 @@
         });
 
         // Modal Control
-        document.getElementById('menu-button-link').addEventListener('mouseup', function() {
+        function enableModal( callback ) {
             document.getElementById('modal-wrapper').classList.remove('disablemodal');
-            setTimeout( function() { document.getElementById('modal-wrapper').classList.remove('hidemodal'); }, 100 );
+            return callback();
+        }
+
+        function unhideModal( callback ) {
+            document.getElementById('modal-wrapper').classList.remove('hidemodal');
+            return callback();
+        }
+
+        function disableScroll() {
             document.getElementById('wrapper-content').classList.add('noscroll');
+        }
+
+        document.getElementById('menu-button-link').addEventListener('mouseup', function() {
+            if( !isClosingModal ) {
+                enableModal( unhideModal( disableScroll ) );
+            }
         })
 
         document.getElementById('close-modal-button').addEventListener('mouseup', function() {
