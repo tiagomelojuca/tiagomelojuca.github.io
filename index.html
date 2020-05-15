@@ -87,7 +87,7 @@
             left: 0;
             background-color: rgba(17, 53, 58, 1);
             z-index: 99999;
-            transition: opacity 1s;
+            transition: opacity 0.6s;
             overflow: hidden;
         }
 
@@ -140,8 +140,9 @@
         }
 
         body #modal-wrapper ul {
+            max-width: 90%;
             padding: 0;
-            margin: 0;
+            margin: 0 auto;
         }
 
         body #modal-wrapper ul li {
@@ -1024,16 +1025,15 @@
     <div id="loader-wrapper">
         <div id="loader-wheel"></div>
     </div>
-
-    <div id="modal-wrapper">
+    <div id="modal-wrapper" class="hidemodal disablemodal">
         <button id="close-modal-button">X</button>
         <div id="modal-container">
             <img src="./assets/photo.jpg" alt="Tiago Photo">
             <p>Where to find my work...</p>
             <ul id="modal-ul">
-                <li><a href="#">Curriculum Vitae</a></li>
-                <li><a href="#">GitHub Profile</a></li>
-                <li><a href="#">Modelev Website</a></li>
+                <li><a href="http://lattes.cnpq.br/5567670520435092" target="_blank">Curriculum Vitae</a></li>
+                <li><a href="https://github.com/tiagomelojuca" target="_blank">GitHub Profile</a></li>
+                <li><a href="https://www.modelevsistemas.com.br/" target="_blank">Modelev Website</a></li>
             </ul>
         </div>
     </div>
@@ -1416,6 +1416,7 @@
         let isEngineerSideActive = false;
         let isDeveloperSideActive = false;
         let isEdgeIconFree = true;
+        let isClosingModal = false;
         const stringToWriteDevSide = '</dev>';
 
         function toggleIfEngineerSideActive() {
@@ -1709,15 +1710,23 @@
         });
 
         // Modal Control
-
         document.getElementById('menu-button-link').addEventListener('mouseup', function() {
-/*             document.getElementById('modal-wrapper').classList.remove('disablemodal');
-            document.getElementById('modal-wrapper').classList.remove('hidemodal'); */
+            document.getElementById('modal-wrapper').classList.remove('disablemodal');
+            setTimeout( function() { document.getElementById('modal-wrapper').classList.remove('hidemodal'); }, 100 );
+            document.getElementById('wrapper-content').classList.add('noscroll');
         })
 
         document.getElementById('close-modal-button').addEventListener('mouseup', function() {
-            document.getElementById('modal-wrapper').classList.add('hidemodal');
-            setTimeout(function() { document.getElementById('modal-wrapper').classList.add('disablemodal') }, 1000);
+            if( !isClosingModal ) {
+                isClosingModal = true;
+                document.getElementById('modal-wrapper').classList.add('hidemodal');
+                setTimeout(function() {
+                    document.getElementById('modal-wrapper').classList.add('disablemodal');
+                    document.getElementById('wrapper-content').classList.remove('noscroll');
+                    isClosingModal = false;
+                }, 600);
+            }
+            
         });
 
         // Disable loader-wrapper when all content is loaded
