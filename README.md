@@ -6,4 +6,4 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 - Fix menu button overlapping on some screens
 - Add some interaction in Header
 - Add a loader container
-- When mobile > 768px turns impossible to navigate
+- When mobile with height > 768px in landscape, turns impossible to navigate
