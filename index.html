@@ -89,7 +89,7 @@
             margin: 10px 0;
         }
 
-        body #wrapper-content #portfolio-header p.name {
+        body #wrapper-content #portfolio-header #name-container p.name {
             font-weight: bold;
             color: rgba(17, 53, 58, 1);
         }
@@ -128,7 +128,7 @@
             color: rgba(17, 53, 58, 1);
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (min-width: 769px) and (max-width: 1113px) {
             body #wrapper-content #portfolio-header p {
                 font-size: 1em;
                 padding: 5px;
@@ -153,7 +153,7 @@
                 padding: 0 20px;
             }
 
-            body #wrapper-content #portfolio-header p.name {
+            body #wrapper-content #portfolio-header #name-container p.name {
                 margin-bottom: 30px;
             }
 
@@ -609,7 +609,298 @@
             }
         }
 
+        /* Preparing to nice effects */
+        #name-container {
+            position: relative;
+        }
+        #name-container {
+            position: relative;
+            text-decoration: none;
+            display: block;
+            cursor: default;
+        }
+
+        .blinking-cursor {
+            pointer-events: none;
+            user-select: none;
+            animation: blink 1s steps(2, start) infinite;
+        }
+        
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+
+        #blinking-text-container {
+            color: rgba(17, 53, 58, 1);
+            font-weight: bold;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            transform: translateX(8px);
+        }
+
+        @media (max-width: 768px) {
+            #blinking-text-container {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1113px) {
+            #blinking-text-container {
+                top: -10px;
+            }
+        }
+
+        @media (min-width: 1114px) and (max-width: 1461px) {
+            #blinking-text-container {
+                top: 10px;
+            }
+        }
+
+        @media (min-width: 1462px) {
+            #blinking-text-container {
+                top: 10px;
+            }
+        }
+
+        .hide-blinking-text {
+            opacity: 0;
+        }
+
     </style>
+
+    <style>
+        
+        /* 
+        // This is third-party code
+        // It's licensed under MIT and can be found in
+        // https://codepen.io/caraujo/pen/VYOjNM
+        // 
+        // The MIT License (MIT)
+        //
+        // Copyright (c) 2020 by Renan C. Araujo (https://codepen.io/caraujo/pen/VYOjNM)
+        //
+        // Permission is hereby granted, free of charge, to any person obtaining a copy
+        // of this software and associated documentation files (the "Software"), to deal
+        // in the Software without restriction, including without limitation the rights
+        // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        // copies of the Software, and to permit persons to whom the Software is
+        // furnished to do so, subject to the following conditions:
+        //
+        // The above copyright notice and this permission notice shall be included in all
+        // copies or substantial portions of the Software.
+        //
+        // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        // SOFTWARE.
+        */
+
+        @media (min-width: 769px) and (max-width: 1113px) {
+            #name-container.p7 .name {
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name:before,
+            #name-container.p7 .name:after {
+                content: '';
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                width: 83px;
+                height: 83px;
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+            }
+            #name-container.p7 .name:before {
+                -webkit-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -moz-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -webkit-clip-path: polygon(0 0, 0 27px, 0% 27px, 0% 0);
+                clip-path: polygon(0 0, 0 27px, 0% 27px, 0% 0);
+                -webkit-transition: all 0.4s 0.25s;
+                -moz-transition: all 0.4s 0.25s;
+                -ms-transition: all 0.4s 0.25s;
+                -o-transition: all 0.4s 0.25s;
+                transition: all 0.4s 0.25s;
+            }
+            #name-container.p7 .name:after {
+                filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(1998%) hue-rotate(153deg) brightness(98%) contrast(87%);
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNC8wMy8xNZFWqVMAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAC/UlEQVR4nO3TuRGAMADAsIT9dw4lDJDjOUsTuPFca61xmeObNO6hcY8/NI5x6zzerACeYXQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBwAm0hC/AwOVFDAAAAAElFTkSuQmCC');
+                background-size: cover;
+                background-position: center center;
+                -webkit-clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name.bridge-active:before {
+                -webkit-clip-path: polygon(0 0, 0 27px, 100% 27px, 100% 0);
+                clip-path: polygon(0 0, 0 27px, 100% 27px, 100% 0);
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            #name-container.p7 .name.bridge-active:after {
+                -webkit-clip-path: polygon(0 0, 0 27px, 100% 27px, 100% 0);
+                clip-path: polygon(0 0, 0 27px, 100% 27px, 100% 0);
+                -webkit-transition: all 0.5s 0.2s;
+                -moz-transition: all 0.5s 0.2s;
+                -ms-transition: all 0.5s 0.2s;
+                -o-transition: all 0.5s 0.2s;
+                transition: all 0.5s 0.2s;
+            }
+        }
+
+        @media (min-width: 1114px) {
+            #name-container.p7 .name {
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name:before,
+            #name-container.p7 .name:after {
+                content: '';
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                width: 62px;
+                height: 62px;
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+            }
+            #name-container.p7 .name:before {
+                -webkit-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -moz-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -webkit-clip-path: polygon(0 0, 0 20px, 0% 20px, 0% 0);
+                clip-path: polygon(0 0, 0 20px, 0% 20px, 0% 0);
+                -webkit-transition: all 0.4s 0.25s;
+                -moz-transition: all 0.4s 0.25s;
+                -ms-transition: all 0.4s 0.25s;
+                -o-transition: all 0.4s 0.25s;
+                transition: all 0.4s 0.25s;
+            }
+            #name-container.p7 .name:after {
+                filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(1998%) hue-rotate(153deg) brightness(98%) contrast(87%);
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNC8wMy8xNZFWqVMAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAC/UlEQVR4nO3TuRGAMADAsIT9dw4lDJDjOUsTuPFca61xmeObNO6hcY8/NI5x6zzerACeYXQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBwAm0hC/AwOVFDAAAAAElFTkSuQmCC');
+                background-size: cover;
+                background-position: center center;
+                -webkit-clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name.bridge-active:before {
+                -webkit-clip-path: polygon(0 0, 0 20px, 100% 20px, 100% 0);
+                clip-path: polygon(0 0, 0 20px, 100% 20px, 100% 0);
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            #name-container.p7 .name.bridge-active:after {
+                -webkit-clip-path: polygon(0 0, 0 20px, 100% 20px, 100% 0);
+                clip-path: polygon(0 0, 0 20px, 100% 20px, 100% 0);
+                -webkit-transition: all 0.5s 0.2s;
+                -moz-transition: all 0.5s 0.2s;
+                -ms-transition: all 0.5s 0.2s;
+                -o-transition: all 0.5s 0.2s;
+                transition: all 0.5s 0.2s;
+            }
+        }
+
+        @media (min-width: 1462px) {
+            #name-container.p7 .name {
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name:before,
+            #name-container.p7 .name:after {
+                content: '';
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                width: 125px;
+                height: 125px;
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+            }
+            #name-container.p7 .name:before {
+                -webkit-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -moz-box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                box-shadow: inset 0px 0px 0px 3px rgba(17, 53, 58, 1);
+                -webkit-clip-path: polygon(0 0, 0 40px, 0% 40px, 0% 0);
+                clip-path: polygon(0 0, 0 40px, 0% 40px, 0% 0);
+                -webkit-transition: all 0.4s 0.25s;
+                -moz-transition: all 0.4s 0.25s;
+                -ms-transition: all 0.4s 0.25s;
+                -o-transition: all 0.4s 0.25s;
+                transition: all 0.4s 0.25s;
+            }
+            #name-container.p7 .name:after {
+                filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(1998%) hue-rotate(153deg) brightness(98%) contrast(87%);
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNC8wMy8xNZFWqVMAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAC/UlEQVR4nO3TuRGAMADAsIT9dw4lDJDjOUsTuPFca61xmeObNO6hcY8/NI5x6zzerACeYXQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBgdAgwOgQYHQKMDgFGhwCjQ4DRIcDoEGB0CDA6BBgdAowOAUaHAKNDgNEhwOgQYHQIMDoEGB0CjA4BRocAo0OA0SHA6BBwAm0hC/AwOVFDAAAAAElFTkSuQmCC');
+                background-size: cover;
+                background-position: center center;
+                -webkit-clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                clip-path: polygon(0 0, 0 0px, 100% 0px, 100% 0);
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #name-container.p7 .name.bridge-active:before {
+                -webkit-clip-path: polygon(0 0, 0 40px, 100% 40px, 100% 0);
+                clip-path: polygon(0 0, 0 40px, 100% 40px, 100% 0);
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            #name-container.p7 .name.bridge-active:after {
+                -webkit-clip-path: polygon(0 0, 0 40px, 100% 40px, 100% 0);
+                clip-path: polygon(0 0, 0 40px, 100% 40px, 100% 0);
+                -webkit-transition: all 0.5s 0.2s;
+                -moz-transition: all 0.5s 0.2s;
+                -ms-transition: all 0.5s 0.2s;
+                -o-transition: all 0.5s 0.2s;
+                transition: all 0.5s 0.2s;
+            }
+        }
+    </style>
+    
 </head>
 <body>
 
@@ -620,7 +911,13 @@
                 <img src="./assets/photo.jpg" alt="Tiago Photo">
             </div>
 
-            <p class="name">Tiago Melo Jucá</p>
+            <div id="name-container" class="p7">
+                <div id="blinking-text-container" class="hide-blinking-text">
+                    <span id="type-text"></span>
+                    <span class="blinking-cursor">_</span>
+                </div>
+                <p id="name-content" class="name">Tiago Melo Jucá</p>
+            </div>
             <p class="separator">|</p>
             <p class="description">Civil engineer and back-end developer</p>
             <p class="separator">|</p>
@@ -846,6 +1143,130 @@
 
     <script>
 
+        // This is third-party code
+        // It's licensed under MIT and can be found in
+        // https://codepen.io/FelixLuciano/pen/PoqdMKP
+        // 
+        // The MIT License (MIT)
+        //
+        // Copyright (c) 2020 by Luciano Felix (https://codepen.io/FelixLuciano/pen/PoqdMKP)
+        //
+        // Permission is hereby granted, free of charge, to any person obtaining a copy
+        // of this software and associated documentation files (the "Software"), to deal
+        // in the Software without restriction, including without limitation the rights
+        // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        // copies of the Software, and to permit persons to whom the Software is
+        // furnished to do so, subject to the following conditions:
+        //
+        // The above copyright notice and this permission notice shall be included in all
+        // copies or substantial portions of the Software.
+        //
+        // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        // SOFTWARE.
+
+        let shouldStop = false;
+
+        // Source code
+
+        const elementNode = document.getElementById('type-text')
+        let actuallyTxt = ''
+
+        function updateNode () {
+        elementNode.innerText = actuallyTxt
+        }
+
+        function pushCharacter (character) {
+            actuallyTxt += character
+            updateNode()
+        }
+
+        function popCharacter () {
+        actuallyTxt = actuallyTxt.slice(0, actuallyTxt.length -1)
+        updateNode()
+        }
+
+        function clearText () {
+        actuallyTxt = ''
+        updateNode()
+        }
+
+
+        function wait (time) {
+        return new Promise(resolve => {
+        setTimeout(resolve, time)
+        })
+        }
+
+        function typeCharacter (character) {
+        return new Promise(resolve => {
+        const randomMsInterval = 100 * Math.random()
+        const msInterval = randomMsInterval < 50 ? 10 : randomMsInterval
+        
+        pushCharacter(character)
+        wait(msInterval).then(resolve)
+        })
+        }
+
+        function removeCharacter () {
+        return new Promise(resolve => {
+        const randomMsInterval = 100 * Math.random()
+        const msInterval = randomMsInterval < 50 ? 10 : randomMsInterval
+        
+        popCharacter()
+        wait(msInterval).then(resolve)
+        })
+        }
+
+        function typeText (text) {
+                return new Promise(resolve => {
+                    (function _type (index) {
+                        typeCharacter(text[index]).then(() => {
+                            if (index + 1 < text.length) {
+                                if( !shouldStop ) {
+                                    _type(index + 1)
+                                } else {
+                                    resolve()
+                                    shouldStop = false;
+                                }
+                            }
+                            else {
+                                resolve()
+                            }
+                        })
+                    })(0)
+                })
+        }
+
+        function removeText ({ length:amount }) {
+            return new Promise(resolve => {
+            (function _remove (index) {
+                removeCharacter().then(() => {
+                if (index + 1 < amount) {
+                    if(!shouldStopRemoving) {
+                        _remove(index + 1)
+                    } else {
+                        resolve()
+                        shouldStopRemoving = false
+                    }
+                }
+                else {
+                    document.getElementById('blinking-text-container').classList.add('hide-blinking-text');
+                    resolve()
+                }
+                })
+            })(0)
+            })
+        }
+
+    </script>
+
+    <script>
+
         function checkIfMobile() {
             if(window.innerWidth > 768) {
                 return false;
@@ -861,6 +1282,7 @@
         let isEngineerSideActive = false;
         let isDeveloperSideActive = false;
         let isEdgeIconFree = true;
+        const stringToWriteDevSide = '</dev>';
 
         function toggleIfEngineerSideActive() {
             if( isEngineerSideActive ) {
@@ -1012,11 +1434,51 @@
             }
         }
 
+        function triggerEngineerAnim() {
+            document.getElementById('name-content').classList.toggle('bridge-active');
+        }
+
+        function triggerDeveloperAnim() {
+            if( !isDeveloperSideActive ) {
+                if( elementNode.innerText.length == 0 ) {
+                    shouldStop = false;
+                    document.getElementById('blinking-text-container').classList.remove('hide-blinking-text');
+                    typeText(stringToWriteDevSide);
+                } else {
+                    shouldStopRemoving = true;
+                    clearText();
+                    document.getElementById('blinking-text-container').classList.remove('hide-blinking-text');
+                    typeText(stringToWriteDevSide);
+                }
+            }
+            if( isDeveloperSideActive ) {
+                if( elementNode.innerText.length == stringToWriteDevSide.length ) {
+                    shouldStopRemoving = false;
+                    removeText(stringToWriteDevSide);
+                } else {
+                    document.getElementById('blinking-text-container').classList.add('hide-blinking-text');
+                    shouldStop = true;
+                    clearText();
+                }
+            }
+
+        }
+
+        function headerAnimation(side) {
+            if( side === 'engineer' ) {
+                triggerEngineerAnim();
+            }
+            if ( side === 'developer' ) {
+                triggerDeveloperAnim();
+            }
+        }
+
         function flipEngineerSide() {
             document.getElementById('engineer-flipbox').classList.toggle('flipbox-container-clicked');
             hideContentWhenFlip('engineer');
             document.getElementById('developer-content-wrapper').classList.toggle('activePointerCursor');
             toggleEdgeButton('engineer', 0.6);
+            headerAnimation('engineer');
             toggleIfEngineerSideActive();
         }
 
@@ -1025,6 +1487,7 @@
             hideContentWhenFlip('developer');
             document.getElementById('engineer-content-wrapper').classList.toggle('activePointerCursor');
             toggleEdgeButton('developer', 0.6);
+            headerAnimation('developer');
             toggleIfDeveloperSideActive();
         }
 

@@ -3,6 +3,5 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 
 # To-do
 - Add modal for menu links (and add link for github, contact and modelev)
-- Add some interaction in Header
 - Add a loader container
 - When mobile with height > 768px in landscape, turns impossible to navigate
