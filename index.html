@@ -32,6 +32,10 @@
             height: 100vh;
         }
 
+        body #wrapper-content.noscroll {
+            overflow: hidden;
+        }
+
         /* Loader */
         @keyframes rotatewheel {
             0% {
@@ -72,6 +76,98 @@
 
         body #loader-wrapper.hideload {
             display: none;
+        }
+
+        /* Modal */
+        body #modal-wrapper {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(17, 53, 58, 1);
+            z-index: 99999;
+            transition: opacity 1s;
+            overflow: hidden;
+        }
+
+        body #modal-wrapper.hidemodal {
+            opacity: 0;
+        }
+
+        body #modal-wrapper.disablemodal {
+            display: none;
+        }
+
+        body #modal-wrapper #close-modal-button {
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            border: 0;
+            outline: 0;
+            background-color: rgba(73, 194, 201, 0.8);
+            border-radius: 50%;
+            font-size: 1.6em;
+            color: rgba(17, 53, 58, 1);
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        body #modal-wrapper #close-modal-button:hover {
+            background-color: rgba(73, 194, 201, 1);
+        }
+
+        body #modal-wrapper #modal-container {
+            max-width: 768px;
+            margin: 60px auto;
+        }
+
+        body #modal-wrapper #modal-container img {
+            border-radius: 50%;
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        body #modal-wrapper #modal-container p {
+            color: #fff;
+            font-size: 2em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        body #modal-wrapper ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        body #modal-wrapper ul li {
+            font-size: 1.4em;
+            font-weight: bold;
+            display: block;
+            list-style-type: none;
+            margin-bottom: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        body #modal-wrapper ul li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: rgba(17, 53, 58, 1);
+            background-color: rgba(73, 194, 201, 0.8);
+            padding: 20px;
+            box-sizing: border-box;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        body #modal-wrapper ul li a:hover {
+            background-color: rgba(73, 194, 201, 1);
         }
 
         /* Header */
@@ -929,7 +1025,20 @@
         <div id="loader-wheel"></div>
     </div>
 
-    <div id="wrapper-content">
+    <div id="modal-wrapper">
+        <button id="close-modal-button">X</button>
+        <div id="modal-container">
+            <img src="./assets/photo.jpg" alt="Tiago Photo">
+            <p>Where to find my work...</p>
+            <ul id="modal-ul">
+                <li><a href="#">Curriculum Vitae</a></li>
+                <li><a href="#">GitHub Profile</a></li>
+                <li><a href="#">Modelev Website</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="wrapper-content" class="noscroll">
 
         <header id="portfolio-header">
             <div id="photo-container">
@@ -1599,11 +1708,24 @@
             }
         });
 
+        // Modal Control
+
+        document.getElementById('menu-button-link').addEventListener('mouseup', function() {
+/*             document.getElementById('modal-wrapper').classList.remove('disablemodal');
+            document.getElementById('modal-wrapper').classList.remove('hidemodal'); */
+        })
+
+        document.getElementById('close-modal-button').addEventListener('mouseup', function() {
+            document.getElementById('modal-wrapper').classList.add('hidemodal');
+            setTimeout(function() { document.getElementById('modal-wrapper').classList.add('disablemodal') }, 1000);
+        });
+
         // Disable loader-wrapper when all content is loaded
         window.onload = function() {
             document.getElementById('loader-wrapper').classList.add('loaded');
             setTimeout(function() {
                 document.getElementById('loader-wrapper').classList.add('hideload');
+                document.getElementById('wrapper-content').classList.remove('noscroll');
             }, 1000);
         }
 
