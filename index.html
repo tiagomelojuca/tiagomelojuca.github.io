@@ -1456,6 +1456,8 @@
         let normalContent = window.innerWidth/2;
         let isEngineerSideActive = false;
         let isDeveloperSideActive = false;
+        let haveTouchedEngineerBefore = false;
+        let haveTouchedDeveloperBefore = false;
         let isEdgeIconFree = true;
         let isClosingModal = false;
         const stringToWriteDevSide = '</dev>';
@@ -1522,6 +1524,19 @@
                     document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
                     document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
                 }
+            }
+        }
+
+        function ForceBackBothSidesToNormal() {
+            if( !isMobile ) {
+                document.getElementById('engineer-content').style.zIndex = 0;
+                document.getElementById('developer-content').style.zIndex = 0;
+                document.getElementById('engineer-content').style.width = normalContent + 'px';
+                document.getElementById('developer-content').style.width = normalContent + 'px';
+                document.getElementById('engineer-hovering').classList.remove('content-hovering-disabled');
+                document.getElementById('developer-hovering').classList.remove('content-hovering-disabled');
+                document.getElementById('engineer-professional-text').classList.remove('hide-profession-text');
+                document.getElementById('developer-professional-text').classList.remove('hide-profession-text');
             }
         }
 
@@ -1655,6 +1670,13 @@
             document.getElementById('developer-content-wrapper').classList.toggle('activePointerCursor');
             toggleEdgeButton('engineer', 0.6);
             headerAnimation('engineer');
+            if( haveTouchedEngineerBefore ) {
+                if( !isEngineerSideActive ) {
+                    makeEngineerSideOverlap();
+                } else {
+                    ForceBackBothSidesToNormal();
+                }
+            }
             toggleIfEngineerSideActive();
         }
 
@@ -1664,16 +1686,36 @@
             document.getElementById('engineer-content-wrapper').classList.toggle('activePointerCursor');
             toggleEdgeButton('developer', 0.6);
             headerAnimation('developer');
+            if( haveTouchedDeveloperBefore ) {
+                if( !isDeveloperSideActive ) {
+                    makeDeveloperSideOverlap();
+                } else {
+                    ForceBackBothSidesToNormal();
+                }
+            }
             toggleIfDeveloperSideActive();
         }
 
+        // Check if is touching
+        document.getElementById('engineer-text').addEventListener('touchstart', function() {
+            haveTouchedEngineerBefore = true;
+        });
+
+        document.getElementById('developer-text').addEventListener('touchstart', function() {
+            haveTouchedDeveloperBefore = true;
+        });
+
         // Is Hovering a Side?
         document.getElementById('engineer-content').addEventListener('mouseover', function() {
-            makeEngineerSideOverlap();
+            if( !haveTouchedEngineerBefore ) {
+                makeEngineerSideOverlap();
+            }
         });
 
         document.getElementById('developer-content').addEventListener('mouseover', function() {
-            makeDeveloperSideOverlap();
+            if( !haveTouchedDeveloperBefore ) {
+                makeDeveloperSideOverlap();
+            }
         });
 
         // Is not Hovering any Side
