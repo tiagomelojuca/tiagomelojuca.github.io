@@ -124,6 +124,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            min-height: 0;
         }
 
         body #modal-wrapper #close-modal-button {
@@ -337,6 +338,12 @@
 
             body #wrapper-content #portfolio-header p.separator {
                 display: none;
+            }
+        }
+
+        @media (max-width: 768px) and (max-height: 340px) {
+            body #wrapper-content #portfolio-header #name-container p.name {
+                margin-bottom: 10px;
             }
         }
 
@@ -749,6 +756,13 @@
 
             .flipbox-inner-text {
                 font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 768px) and (max-height: 340px) {
+            .flipbox-back .profession-icon {
+                width: 64px;
+                height: 64px;
             }
         }
 
