@@ -1808,7 +1808,7 @@
 
         // Modal Control
         document.getElementById('menu-button-link').addEventListener('mouseup', function() {
-            document.getElementById('wrapper-content').classList.add('noscroll');
+            document.getElementById('wrapper-content').classList.toggle('noscroll');
             document.getElementById('modal-wrapper').classList.remove('hidemodal');
         })
 
@@ -1818,7 +1818,7 @@
                 document.getElementById('modal-wrapper').classList.add('hidemodal');
                 setTimeout(function() {
                     document.getElementById('modal-wrapper').classList.add('disablemodal');
-                    document.getElementById('wrapper-content').classList.remove('noscroll');
+                    document.getElementById('wrapper-content').classList.toggle('noscroll');
                     isClosingModal = false;
                 }, 600);
             }
