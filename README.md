@@ -3,4 +3,3 @@ Repo for my own personal portfolio page, as civil engineer and developer, which 
 
 # To-do
 - When mobile with height > 768px in landscape, turns impossible to navigate
-- Fix scroll bug when height is less than necessary to view all modal

@@ -110,7 +110,8 @@
         body #modal-wrapper {
             width: 100vw;
             height: 100vh;
-            position: fixed;
+            min-height: 540px;
+            position: absolute;
             top: 0;
             left: 0;
             background-color: rgba(17, 53, 58, 1);
@@ -168,10 +169,11 @@
         }
 
         body #modal-wrapper #modal-container p {
+            width: 90%;
             color: #fff;
             font-size: 2em;
             text-align: center;
-            margin: 20px 0;
+            margin: 20px auto;
         }
 
         body #modal-wrapper ul {
@@ -1092,7 +1094,7 @@
                 <p id="name-content" class="name">Tiago Melo Jucá</p>
             </div>
             <p class="separator">|</p>
-            <p class="description">Civil engineer and back-end developer</p>
+            <p class="description">Civil engineering and back-end developer</p>
             <p class="separator">|</p>
             <p class="question">
                 <span id="question-desktop">Which side of me you wanna know?</span>
@@ -1750,6 +1752,7 @@
 
         // Modal Control
         document.getElementById('menu-button-link').addEventListener('mouseup', function() {
+            document.getElementById('wrapper-content').classList.add('noscroll');
             document.getElementById('modal-wrapper').classList.remove('hidemodal');
         })
 
