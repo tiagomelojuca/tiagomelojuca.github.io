@@ -1787,6 +1787,8 @@
 
         // Resizing Window
         window.addEventListener('resize', () => {
+            haveTouchedEngineerBefore = false;
+            haveTouchedDeveloperBefore = false;
             updateClientWidth();
             if( !isMobile ) {
                 if( isEngineerSideActive && isDeveloperSideActive ) {
