@@ -1,5 +1,5 @@
 # my-personal-portfolio
-Repo for my own personal portfolio page, as civil engineer and developer, which I'd like to keep public as a template
+Repo for my own personal portfolio page as civil engineer, so as developer, which I'd like to keep public as a template
 
 # To-do
 - Replace all "civil engineering" for "civil engineer" when I finnally finish this college (this year, I hope, if this difficult pandemic moment doesn't take too long)
