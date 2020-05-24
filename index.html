@@ -60,6 +60,10 @@
             height: 100vh;
         }
 
+        body #wrapper-content.hiddenoverflow {
+            overflow: hidden;
+        }
+
         body #wrapper-content.disable-scroll {
             position: fixed;
         }
@@ -1108,7 +1112,7 @@
     <div id="loader-wrapper">
         <div id="loader-wheel"></div>
     </div>
-    <div id="modal-wrapper" class="hidemodal disablemodal">
+    <div id="modal-wrapper" class="hidemodal">
         <div id="close-modal-button-container"><button id="close-modal-button"><span>X</span></button></div>
         <div id="modal-container">
             <img src="./assets/photo.jpg" alt="Tiago Photo">
@@ -1117,13 +1121,13 @@
                 <li><a href="http://lattes.cnpq.br/5567670520435092" target="_blank">Curriculum Vitae</a></li>
                 <li><a href="https://github.com/tiagomelojuca" target="_blank">GitHub Profile</a></li>
                 <li><a href="https://www.modelevsistemas.com.br/" target="_blank">Modelev Website</a></li>
-                <li><a href="https://www.modelevsistemas.com.br/comingsoon.html" target="_blank">Personal Blog</a></li>
+                <li><a href="https://www.tiagomelojuca.com/comingsoon.html" target="_blank">Personal Blog</a></li>
                 <li><a href="mailto:contact@tiagomelojuca.com" target="_blank">Contact</a></li>
             </ul>
         </div>
     </div>
 
-    <div id="wrapper-content">
+    <div id="wrapper-content" class="hiddenoverflow">
 
         <header id="portfolio-header">
             <div id="photo-container">
@@ -1839,7 +1843,7 @@
         });
 
         // Functions to control page scrolling without set overflow to hidden
-        // just to clarify when I say 'Page', I mean just the wrapper-content
+        // just to clarify: when I say 'Page', I mean just the wrapper-content
         let isPageScrollDisabled = false;
         let currentPageOffset;
 
@@ -1878,7 +1882,6 @@
                 document.getElementById('modal-wrapper').classList.add('hidemodal');
                 document.getElementById('menu-button').classList.toggle('hidemenubutton');
                 setTimeout(function() {
-                    document.getElementById('modal-wrapper').classList.add('disablemodal');
                     isClosingModal = false;
                 }, 600);
             }
@@ -1890,6 +1893,7 @@
             document.getElementById('loader-wrapper').classList.add('loaded');
             setTimeout(function() {
                 document.getElementById('loader-wrapper').classList.add('hideload');
+                document.getElementById('wrapper-content').classList.remove('hiddenoverflow');
             }, 1000);
         }
 
